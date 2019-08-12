@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   protected initializing: boolean = true;
   protected uploading: boolean = false;
   protected rooms: IRoom[];
+  protected status: string;
 
   /**
    * Constructor.
@@ -95,12 +96,24 @@ export class AppComponent implements OnInit {
       }
     }
 
+	// Upload rooms
+    this.upload(rooms);
+  }
+
+  /**
+   * Upload rooms.
+   * 
+   * @param rooms Rooms to upload
+   */
+  private upload(rooms: IRoom[]): void {
     // Post the rooms
     this.httpClient.post("https://dcsexchange.azurewebsites.net/api/AddRoom", rooms, {
-      params: new HttpParams().set("code", "KvRbHdj7MEz5eriZIzqqDv8LdHm3HladWGt7TxxcstPIMC1QjzdU7w==")
+      params: new HttpParams().set("code", "KvRbHdj7MEz5eriZIzqqDv8LdHm3HladWGt7TxxcstPIMC1QjzdU7w=="),
+      responseType: "text"
     }).subscribe(() => {
       this.uploading = false;
+      this.initializing = true;
       this.getRooms();
-    })
+    });
   }
 }

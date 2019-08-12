@@ -1,7 +1,8 @@
 <img src="assets/logo.png" id="logo"/><h1 class="title">Exchange Room Tool</h1>
-<div *ngIf="initializing" class="loading">
+<div *ngIf="initializing || uploading" class="loading">
   <img src="assets/gradient-loader.gif"/>
-  <div>Loading, please wait...</div>
+  <div *ngIf="initializing">Loading, please wait...</div>
+  <div *ngIf="uploading">Uploading, please wait <span [innerHtml]="status"></span>...</div>
 </div>
 <div *ngIf="!initializing">
   <div>
@@ -40,4 +41,5 @@
   <div *ngIf="rooms.length == 0">
     <h2>No rooms to display</h2>
   </div>
+  <a href="assets/template.csv" target="_blank">Download Template</a>
 </div>
