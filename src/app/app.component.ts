@@ -10,10 +10,10 @@ import { IRoom, Room, RoomDTO } from './models/room';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  protected initializing: boolean = true;
-  protected uploading: boolean = false;
-  protected rooms: IRoom[];
-  protected status: string;
+  public initializing: boolean = true;
+  public uploading: boolean = false;
+  public rooms: IRoom[];
+  public status: string;
 
   /**
    * Constructor.
